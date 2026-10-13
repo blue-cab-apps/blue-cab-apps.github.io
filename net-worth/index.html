@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="A private net-worth tracker for iPhone. One number for everything you own minus everything you owe, and how it moves. No account, no bank logins, no analytics.">
+<!-- At release, add the Smart App Banner (the director fills in the App Store ID):
+<meta name="apple-itunes-app" content="app-id=APP_STORE_ID">
+-->
+<title>Net Worth for iPhone</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1c1c1e;
+    --muted: #5c5c63;
+    --rule: #e3e3e8;
+    --panel: #f4f4f7;
+    --link: #0a64d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111113;
+      --text: #ececf0;
+      --muted: #a4a4ad;
+      --rule: #2c2c31;
+      --panel: #1c1c20;
+      --link: #6cb2ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 42rem; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 1.2rem; letter-spacing: -.01em; }
+  h2 { font-size: 1.3rem; line-height: 1.3; margin: 2.6rem 0 .4rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); }
+  p { margin: 0 0 1rem; }
+  a { color: var(--link); }
+  .lead { font-size: 1.3rem; line-height: 1.35; font-weight: 600; margin: 0 0 .8rem; }
+  .coming { color: var(--muted); font-style: italic; }
+  .shots { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2.2rem 0 0; }
+  @media (min-width: 40rem) {
+    .shots { grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; }
+  }
+  figure { margin: 0; }
+  .frame {
+    width: min(100%, 15rem);
+    margin: 0 auto;
+    aspect-ratio: 1206 / 2622;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+  }
+  @media (min-width: 40rem) {
+    .frame { width: 100%; }
+  }
+  .frame img {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    color: transparent;
+    font-size: 0;
+  }
+  .frame img::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--panel);
+  }
+  figcaption { color: var(--muted); font-size: .9rem; line-height: 1.5; margin: .7rem auto 0; width: min(100%, 15rem); text-align: center; }
+  @media (min-width: 40rem) {
+    figcaption { width: 100%; text-align: left; }
+  }
+  .contact { word-break: break-all; }
+  footer { color: var(--muted); font-size: .9rem; margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); }
+  footer p { margin-bottom: .8rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Net Worth</h1>
+  <p class="lead">Know your net worth, up or down.</p>
+  <p>One number for everything you own minus everything you owe, and how it moves over time. You type the balances yourself. Nothing to sign up for.</p>
+  <p class="coming">Coming to the App Store for iPhone.</p>
+  <!-- At release, replace the line above with Apple's badge (artwork from Apple's marketing tools; the director
+       fills in the URL, of the form apps.apple.com/app/id<ID>?pt=<provider>&ct=site&mt=8):
+  <p><a href="APP_STORE_URL"><img src="images/app-store-badge.svg" alt="Download on the App Store" width="120" height="40"></a></p>
+  -->
+
+  <section class="shots">
+    <figure>
+      <div class="frame">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="images/dashboard-dark.png">
+          <img src="images/dashboard-light.png" width="1206" height="2622" alt="The Dashboard: a net worth of $1,487,320, up this month, with a chart of the last 90 days.">
+        </picture>
+      </div>
+      <figcaption>Your total, what changed since your last update, and your history.</figcaption>
+    </figure>
+    <figure>
+      <div class="frame">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="images/history-dark.png">
+          <img src="images/history-light.png" width="1206" height="2622" alt="The History screen for the Investment category: a bar for each update, split into one band per account, with a legend.">
+        </picture>
+      </div>
+      <figcaption>History by month, with what moved.</figcaption>
+    </figure>
+    <figure>
+      <div class="frame">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="images/goals-dark.png">
+          <img src="images/goals-light.png" width="1206" height="2622" alt="The Goals screen: a reached goal with a green seal, and the next suggested target.">
+        </picture>
+      </div>
+      <figcaption>A goal within reach, with a forecast at your 3-month pace.</figcaption>
+    </figure>
+  </section>
+
+  <h2>You type the balances</h2>
+  <p>Add what you own: cash, investments, property, a vehicle, retirement savings, anything else with a balance. Add what you owe: cards, loans, a mortgage. Open an account whenever you want to enter its current balance. Each day you change one, the app saves that day&rsquo;s totals as an update, and every update becomes a point on your line.</p>
+  <p>No bank logins, no spending categories, no transactions. One currency, shown with the $ sign.</p>
+
+  <h2>Private by design</h2>
+  <p>There is no account and nothing to sign up for. What you enter stays on your iPhone and, if you use iCloud, in your own private iCloud storage. Apple hosts that storage and we have no access to it.</p>
+  <p>No analytics, no advertising, no tracking, no third-party code. The app has no server of its own and sends nothing to us. The App Store privacy label says the same: Data Not Collected.</p>
+
+  <h2>Honest numbers</h2>
+  <p>A down month shows as down. A new account is not growth. Every forecast says its pace: &ldquo;~June 2027 at your 3-month pace&rdquo;. A past estimate is marked as an estimate, so your first chart can already show change without pretending to know more than you told it.</p>
+
+  <h2>Reminders on your day</h2>
+  <p>An update reminder on the day and at the time you choose: weekly, every two weeks, monthly, or on payday. Hide balances with one tap when someone is looking over your shoulder.</p>
+
+  <h2>Free, with two months of Premium included</h2>
+  <p>The free version keeps one account per category and one net-worth goal with a suggested target. Premium adds more accounts per category, your own goal targets, and goals for a category or a single account. It costs $2.99 per month or $34.99 per year (US prices; the App Store shows your local price before you confirm).</p>
+  <p>Every new user gets two months of Premium features at no cost. They start when the app tells you about them, after setup. Nothing is charged, no payment details are asked for, and nothing renews. When they end, nothing is deleted, merged or changed.</p>
+
+  <h2>Want a note when it is out?</h2>
+  <p><a href="mailto:bluecab.apps@gmail.com?subject=Net%20Worth%3A%20tell%20me%20when%20it%27s%20out">Email bluecab.apps@gmail.com</a> with the subject &ldquo;Net Worth: tell me when it&rsquo;s out&rdquo; and we will send one message, on release day, and nothing else.</p>
+
+  <footer>
+    <p class="contact"><a href="support.html"><strong>Support</strong></a> &middot; <a href="privacy-policy.html"><strong>Privacy Policy</strong></a> &middot; Questions: <a href="mailto:bluecab.apps@gmail.com">bluecab.apps@gmail.com</a></p>
+    <p>Net Worth is a personal tracker. It does not connect to banks, move money or give financial advice.</p>
+    <p><em>Blue Cab &middot; Small, private apps for iPhone.</em></p>
+  </footer>
+</main>
+</body>
+</html>
