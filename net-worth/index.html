@@ -4,144 +4,230 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="A private net-worth tracker for iPhone. One number for everything you own minus everything you owe, and how it moves. No account, no bank logins, no analytics.">
+<meta name="description" content="Net Worth for iPhone: your net worth, tracked in a few minutes a month. A monthly check-in, one account at a time. No bank logins, no account, Data Not Collected.">
 <meta name="apple-itunes-app" content="app-id=6820867348">
-<title>Net Worth for iPhone</title>
+<meta property="og:title" content="Net Worth for iPhone">
+<meta property="og:description" content="Your net worth, tracked in a few minutes a month. No bank logins. Nothing shared.">
+<meta property="og:image" content="https://blue-cab-apps.github.io/net-worth/images/store-01-net-worth.jpg">
+<title>Net Worth for iPhone · Your net worth, tracked in a few minutes a month</title>
 <style>
   :root {
-    --bg: #ffffff;
-    --text: #1c1c1e;
-    --muted: #5c5c63;
-    --rule: #e3e3e8;
-    --panel: #f4f4f7;
-    --link: #0a64d6;
+    --bg: #F6F8F9;
+    --bg-2: #E6EEF0;
+    --ink: #0E1A24;
+    --muted: #4E5D68;
+    --rule: #DCE3E7;
+    --card: #FFFFFF;
+    --green: #1F9D55;
+    --link: #0A64D6;
+    --dark: #0D1418;
+    --dark-ink: #F2F6F7;
+    --dark-muted: #A9C2CC;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #111113;
-      --text: #ececf0;
-      --muted: #a4a4ad;
-      --rule: #2c2c31;
-      --panel: #1c1c20;
-      --link: #6cb2ff;
+      --bg: #0F1519;
+      --bg-2: #0B1013;
+      --ink: #EEF3F5;
+      --muted: #A3B2BB;
+      --rule: #25313A;
+      --card: #172027;
+      --green: #3BD67E;
+      --link: #6CB2FF;
     }
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
+    color: var(--ink);
     background: var(--bg);
-    color: var(--text);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font: 18px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
-  main { max-width: 42rem; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
-  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 1.2rem; letter-spacing: -.01em; }
-  h2 { font-size: 1.3rem; line-height: 1.3; margin: 2.6rem 0 .4rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); }
-  p { margin: 0 0 1rem; }
   a { color: var(--link); }
-  .lead { font-size: 1.3rem; line-height: 1.35; font-weight: 600; margin: 0 0 .8rem; }
-  .shots { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin: 2.2rem 0 0; }
-  @media (min-width: 40rem) {
-    .shots { grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1rem; }
+  .dot { color: var(--green); }
+
+  /* Hero */
+  .hero {
+    background:
+      radial-gradient(60% 50% at 0% 0%, rgba(31, 157, 85, 0.12) 0%, rgba(31, 157, 85, 0) 100%),
+      radial-gradient(60% 50% at 100% 0%, rgba(10, 122, 255, 0.10) 0%, rgba(10, 122, 255, 0) 100%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    padding: 3.5rem 0 3rem;
   }
-  figure { margin: 0; }
-  .frame {
-    width: min(100%, 15rem);
-    margin: 0 auto;
-    aspect-ratio: 1206 / 2622;
-    background: var(--panel);
-    border: 1px solid var(--rule);
-    border-radius: 18px;
-    overflow: hidden;
-    position: relative;
+  .hero .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 2.5rem; }
+  .hero-text { flex: 999 1 26rem; min-width: 0; }
+  .hero-shot { flex: 1 1 16rem; display: flex; justify-content: center; }
+  .brand { display: flex; align-items: center; gap: .6rem; font-weight: 600; color: var(--muted); margin: 0 0 1.6rem; }
+  .brand svg { flex-shrink: 0; }
+  h1 {
+    font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 750;
+    margin: 0 0 1rem;
   }
-  @media (min-width: 40rem) {
-    .frame { width: 100%; }
+  h1 .sub { display: block; font-weight: 500; color: var(--muted); font-size: .62em; letter-spacing: -0.02em; margin-top: .5rem; line-height: 1.15; }
+  .hero p { font-size: 1.15rem; color: var(--muted); max-width: 32rem; margin: 0 0 1.6rem; }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.4rem; }
+  .cta .note { font-size: .95rem; color: var(--muted); }
+  .badge img { display: block; height: 48px; width: auto; }
+  .chips { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+  .chips li { font-size: .95rem; font-weight: 600; padding: .45rem .9rem; border-radius: 999px; background: var(--card); border: 1px solid var(--rule); }
+  .shot { width: min(100%, 19rem); border-radius: 22px; box-shadow: 0 30px 70px rgba(14, 26, 36, 0.18), 0 8px 20px rgba(14, 26, 36, 0.08); display: block; height: auto; }
+
+  /* Gallery */
+  .gallery { padding: 3.5rem 0 1rem; }
+  .gallery h2, .section h2 { font-size: clamp(1.7rem, 3.6vw, 2.4rem); line-height: 1.12; letter-spacing: -0.03em; margin: 0 0 .6rem; }
+  .gallery .intro { color: var(--muted); margin: 0 0 1.6rem; max-width: 36rem; }
+  .strip {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(72%, 15rem);
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: .5rem 1rem 1.5rem;
+    margin: 0 -1rem;
   }
-  .frame img {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    color: transparent;
-    font-size: 0;
+  .strip figure { margin: 0; scroll-snap-align: start; }
+  .strip img { width: 100%; height: auto; display: block; border-radius: 18px; box-shadow: 0 16px 36px rgba(14, 26, 36, 0.14); }
+  @media (min-width: 60rem) {
+    .strip { grid-auto-flow: row; grid-template-columns: repeat(6, minmax(0, 1fr)); overflow: visible; padding: .5rem 0 1.5rem; margin: 0; }
   }
-  .frame img::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--panel);
-  }
-  figcaption { color: var(--muted); font-size: .9rem; line-height: 1.5; margin: .7rem auto 0; width: min(100%, 15rem); text-align: center; }
-  @media (min-width: 40rem) {
-    figcaption { width: 100%; text-align: left; }
-  }
-  .contact { word-break: break-all; }
-  footer { color: var(--muted); font-size: .9rem; margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--rule); }
-  footer p { margin-bottom: .8rem; }
+
+  /* Sections */
+  .section { padding: 3rem 0; border-top: 1px solid var(--rule); }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.4rem; margin-top: 1.6rem; }
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 20px; padding: 1.4rem 1.4rem 1.2rem; }
+  .card h3 { font-size: 1.15rem; margin: 0 0 .4rem; letter-spacing: -0.01em; }
+  .card p { margin: 0; color: var(--muted); font-size: 1rem; }
+  .lead { color: var(--muted); max-width: 40rem; margin: 0; }
+
+  .private { background: var(--dark); color: var(--dark-ink); border-top: 0; }
+  .private .lead { color: var(--dark-muted); }
+  .private .card { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.10); }
+  .private .card p { color: var(--dark-muted); }
+  .proof { display: inline-flex; align-items: center; gap: .7rem; margin-top: 1.4rem; padding: .7rem 1.1rem; border-radius: 16px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); }
+  .proof small { display: block; font-size: .7rem; letter-spacing: .12em; color: var(--dark-muted); font-weight: 700; }
+  .proof strong { font-size: 1.1rem; }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.4rem; margin-top: 1.6rem; }
+  .price .card ul { margin: .6rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 1rem; }
+  .price .card .amount { font-size: 1.6rem; font-weight: 750; letter-spacing: -0.02em; margin: .2rem 0 .2rem; color: var(--ink); }
+
+  footer { border-top: 1px solid var(--rule); padding: 2rem 0 3rem; color: var(--muted); font-size: .95rem; }
+  footer p { margin: 0 0 .7rem; }
+  .contact { word-break: break-word; }
 </style>
 </head>
 <body>
-<main>
-  <h1>Net Worth</h1>
-  <p class="lead">Know your net worth, up or down.</p>
-  <p>One number for everything you own minus everything you owe, and how it moves over time. You type the balances yourself. Nothing to sign up for.</p>
-  <p><a href="https://apps.apple.com/app/apple-store/id6820867348?pt=129496906&amp;ct=site&amp;mt=8"><img src="images/app-store-badge.svg" alt="Download on the App Store" width="120" height="40"></a></p>
 
-  <section class="shots">
-    <figure>
-      <div class="frame">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="images/dashboard-dark.png">
-          <img src="images/dashboard-light.png" width="1206" height="2622" alt="The Dashboard: a net worth of $1,487,320, up this month, with a chart of the last 90 days.">
-        </picture>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <p class="brand">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="8" fill="#FFFFFF" stroke="#DCE3E7"></rect><path d="M7 24l7-7 4 4 9-10" fill="none" stroke="#1F9D55" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        Net Worth for iPhone
+      </p>
+      <h1>Your net worth<span class="dot">,</span><span class="sub">tracked in a few minutes a month<span class="dot">.</span></span></h1>
+      <p>Once a month, a short check-in walks you through each account: type the new balance, or keep it. Then see what moved.</p>
+      <div class="cta">
+        <a class="badge" href="https://apps.apple.com/app/apple-store/id6820867348?pt=129496906&amp;ct=site&amp;mt=8"><img src="images/app-store-badge.svg" alt="Download on the App Store" width="144" height="48"></a>
+        <span class="note">Free to use. Premium optional.</span>
       </div>
-      <figcaption>Your total, what changed since your last update, and your history.</figcaption>
-    </figure>
-    <figure>
-      <div class="frame">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="images/history-dark.png">
-          <img src="images/history-light.png" width="1206" height="2622" alt="The History screen for the Investment category: a bar for each update, split into one band per account, with a legend.">
-        </picture>
+      <ul class="chips" aria-label="Privacy">
+        <li>No bank logins</li>
+        <li>No account to create</li>
+        <li>Data Not Collected</li>
+      </ul>
+    </div>
+    <div class="hero-shot">
+      <img class="shot" src="images/store-01-net-worth.jpg" width="603" height="1311" alt="Your net worth, tracked in a few minutes a month: the Net Worth Dashboard showing $35,280, up 12.1% this month, with a rising chart.">
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="gallery" aria-labelledby="tour">
+    <div class="wrap">
+      <h2 id="tour">A calm way to keep score.</h2>
+      <p class="intro">No feeds, no budgets, no transactions. One number for everything you own minus everything you owe, and how it moves.</p>
+      <div class="strip">
+        <figure><img src="images/store-02-check-in.jpg" width="603" height="1311" loading="lazy" alt="Type it, or keep it. Update one account at a time: Savings goes from $9,800 to $10,090, up $290."></figure>
+        <figure><img src="images/store-03-private.jpg" width="603" height="1311" loading="lazy" alt="Keep it private. No bank logins. Nothing shared. Data Not Collected."></figure>
+        <figure><img src="images/store-04-recap.jpg" width="603" height="1311" loading="lazy" alt="See what moved this month: 21 months on record, CPF moved most, up $2,350."></figure>
+        <figure><img src="images/store-05-goals.jpg" width="603" height="1311" loading="lazy" alt="Tackle one milestone, then the next: Reach $30,000 done, next Reach $40,000."></figure>
+        <figure><img src="images/store-06-accounts.jpg" width="603" height="1311" loading="lazy" alt="Track cash, CPF and loans, all in one number: the Accounts list."></figure>
+        <figure><img src="images/store-01-net-worth.jpg" width="603" height="1311" loading="lazy" alt="Your net worth, tracked in a few minutes a month: the Dashboard."></figure>
       </div>
-      <figcaption>History by month, with what moved.</figcaption>
-    </figure>
-    <figure>
-      <div class="frame">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="images/goals-dark.png">
-          <img src="images/goals-light.png" width="1206" height="2622" alt="The Goals screen: a reached goal with a green seal, and the next suggested target.">
-        </picture>
-      </div>
-      <figcaption>A goal within reach, with a forecast at your 3-month pace.</figcaption>
-    </figure>
+    </div>
   </section>
 
-  <h2>You type the balances</h2>
-  <p>Add what you own: cash, investments, property, a vehicle, retirement savings, anything else with a balance. Add what you owe: cards, loans, a mortgage. Open an account whenever you want to enter its current balance. Each day you change one, the app saves that day&rsquo;s totals as an update, and every update becomes a point on your line.</p>
-  <p>No bank logins, no spending categories, no transactions. One currency, shown with the $ sign.</p>
+  <section class="section" aria-labelledby="how">
+    <div class="wrap">
+      <h2 id="how">The monthly check-in.</h2>
+      <p class="lead">A reminder on the day you choose opens the check-in. Each account in turn: type the new balance, or tap Keep if nothing changed.</p>
+      <div class="cols">
+        <div class="card"><h3>One account at a time</h3><p>You see every account on Ready to save before anything is saved. Stop halfway and it is kept on your iPhone, with one reminder to pick it up if you use reminders.</p></div>
+        <div class="card"><h3>A recap of the month</h3><p>What moved, your pace, and milestones. A down month shows as down. A new account is not counted as growth.</p></div>
+        <div class="card"><h3>Goals, one milestone at a time</h3><p>Reach one target, then the app suggests the next. Forecasts always say their pace.</p></div>
+        <div class="card"><h3>Everything you own and owe</h3><p>Cash, investments, CPF, property, vehicles, cards, loans and mortgages. One currency, shown with the $ sign.</p></div>
+      </div>
+    </div>
+  </section>
 
-  <h2>Private by design</h2>
-  <p>There is no account and nothing to sign up for. What you enter stays on your iPhone and, if you use iCloud, in your own private iCloud storage. Apple hosts that storage and we have no access to it.</p>
-  <p>No analytics, no advertising, no tracking, no third-party code. The app has no server of its own and sends nothing to us. The App Store privacy label says the same: Data Not Collected.</p>
+  <section class="section private" aria-labelledby="private">
+    <div class="wrap">
+      <h2 id="private">Keep it private<span class="dot">.</span></h2>
+      <p class="lead">There is no account and nothing to sign up for. You type your balances. They stay on your iPhone and, if you use iCloud, in your own private iCloud storage. Apple hosts that storage and we have no access to it.</p>
+      <div class="cols">
+        <div class="card"><h3>No bank logins</h3><p>Nothing connects to your bank, and the app never moves money.</p></div>
+        <div class="card"><h3>Nothing shared</h3><p>No analytics, no advertising, no tracking, no third-party code. The app has no server of its own and sends nothing to us.</p></div>
+      </div>
+      <div class="proof">
+        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#1F9D55"></circle><path d="M7 12.4l3.2 3.1L17 8.8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span><small>APP PRIVACY</small><strong>Data Not Collected</strong></span>
+      </div>
+    </div>
+  </section>
 
-  <h2>Honest numbers</h2>
-  <p>A down month shows as down. A new account is not growth. Every forecast says its pace: &ldquo;~June 2027 at your 3-month pace&rdquo;. A past estimate is marked as an estimate, so your first chart can already show change without pretending to know more than you told it.</p>
+  <section class="section" aria-labelledby="price">
+    <div class="wrap">
+      <h2 id="price">Free to use. Premium when you want more.</h2>
+      <div class="price">
+        <div class="card">
+          <h3>Free</h3>
+          <p class="amount">$0</p>
+          <ul>
+            <li>One account per category</li>
+            <li>A net-worth goal with a suggested target</li>
+            <li>The monthly check-in, recap and reminders</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Premium</h3>
+          <p class="amount">$2.99 a month or $34.99 a year</p>
+          <ul>
+            <li>As many accounts as you like in every category</li>
+            <li>Your own net-worth target</li>
+            <li>Goals for a category or a single account</li>
+          </ul>
+        </div>
+      </div>
+      <p class="lead" style="margin-top: 1.2rem; font-size: 1rem;">New subscribers can try Premium free for a month. It then renews at the price shown unless you cancel at least 24 hours before it ends. US prices; the App Store shows your local price before you confirm. Nothing you enter is ever deleted.</p>
+    </div>
+  </section>
+</main>
 
-  <h2>Reminders on your day</h2>
-  <p>An update reminder on the day and at the time you choose: weekly, every two weeks, monthly, or on payday. Hide balances with one tap when someone is looking over your shoulder.</p>
-
-  <h2>Free, with two months of Premium included</h2>
-  <p>The free version keeps one account per category and one net-worth goal with a suggested target. Premium adds more accounts per category, your own goal targets, and goals for a category or a single account. It costs $2.99 per month or $34.99 per year (US prices; the App Store shows your local price before you confirm).</p>
-  <p>Every new user gets two months of Premium features at no cost. They start when the app tells you about them, after setup. Nothing is charged, no payment details are asked for, and nothing renews. When they end, nothing is deleted, merged or changed.</p>
-
-  <footer>
+<footer>
+  <div class="wrap">
     <p class="contact"><a href="support.html"><strong>Support</strong></a> &middot; <a href="privacy-policy.html"><strong>Privacy Policy</strong></a> &middot; Questions: <a href="mailto:bluecab.apps@gmail.com">bluecab.apps@gmail.com</a></p>
     <p>Net Worth is a personal tracker. It does not connect to banks, move money or give financial advice.</p>
     <p><em>Blue Cab &middot; Small, private apps for iPhone.</em></p>
-  </footer>
-</main>
+  </div>
+</footer>
+
 </body>
 </html>
